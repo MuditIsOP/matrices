@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices & Calculus - Master Question Bank (2018-2024)</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #000;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-left: 5px solid #333;
+            margin-top: 40px;
+        }
+
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            color: #444;
+        }
+
+        .trend-box {
+            border: 1px solid #000;
+            background-color: #fffbe6;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .trend-title {
+            font-weight: bold;
+            text-decoration: underline;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .question-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .question-item {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .source-tag {
+            font-weight: bold;
+            font-size: 0.85em;
+            color: #555;
+            display: inline-block;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+
+        .math-tex {
+            font-style: italic;
+        }
+
+        /* Print Logic */
+        @media print {
+            body {
+                padding: 0 15px;
+                max-width: 100%;
+                color: #000 !important;
+                border-left: 2px solid #000;
+                border-right: 2px solid #000;
+            }
+
+            h2 {
+                break-before: page;
+                page-break-before: always;
+                background: none !important;
+                border-left: 5px solid #000 !important;
+                color: #000 !important;
+            }
+
+            /* Prevent page break before the first module to avoid empty space after title */
+            #mod1 {
+                break-before: auto;
+                page-break-before: auto;
+            }
+
+            h3 {
+                color: #000 !important;
+                border-bottom: 1px solid #000 !important;
+            }
+
+            .trend-box {
+                background: none !important;
+                border: 1px solid #000 !important;
+            }
+
+            .source-tag {
+                background: none !important;
+                border: 1px solid #000;
+                color: #000 !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000 !important;
+            }
+
+            .question-item {
+                border-bottom: none !important;
+            }
+
+            /* Ensure all text is black */
+            * {
+                color: #000 !important;
+                background-color: transparent !important;
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .print-btn {
+            background-color: #007bff;
+            border: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .print-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav-buttons no-print">
+        <button onclick="window.print()" class="btn print-btn">🖨️ Print this Page</button>
+        <br><br>
+        <p><strong>Jump to:</strong></p>
+        <a href="#mod1" class="btn">Module 1</a>
+        <a href="#mod2" class="btn">Module 2</a>
+        <a href="#mod3" class="btn">Module 3</a>
+        <a href="#mod4" class="btn">Module 4</a>
+    </div>
+
+    <h1>Matrices & Calculus (BAS/NBS 3101/4101)<br>Master PYQ Bank (2018-2024)</h1>
+    <p style="text-align:center"><em>Compiled from Years: 2018-19, 2019-20, 2022-23, 2022-23(SCOP), 2023-24</em></p>
+
+    <h2 id="mod1">Module I: Matrices</h2>
+
+    <div class="trend-box">
+        <span class="trend-title">🔥 HIGH YIELD TRENDS (Exam Priority):</span>
+        <ul>
+            <li><strong>Critical (100% Chance):</strong> Cayley-Hamilton Theorem (Verify & Find Inverse).</li>
+            <li><strong>Critical:</strong> Rank of Matrix (specifically via Normal Form).</li>
+            <li><strong>High:</strong> Consistency of Linear Equations (Find &lambda; and &mu;).</li>
+            <li><strong>Medium:</strong> Eigenvalues/Eigenvectors calculation.</li>
+        </ul>
+    </div>
+
+    <h3>Topic: Cayley-Hamilton Theorem</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q2a]</span> Find the characteristic equation of matrix A = [[2, -1, 1],
+            [-1, 2, -1], [1, -1, 2]] and verify that it is satisfied by A and hence obtain A⁻¹.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q3c]</span> Verify Cayley-Hamilton theorem for the matrix: A = [[2, -1,
+            1], [-1, 2, -1], [1, -1, 2]]. Hence find A⁻¹.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q3c]</span> Verify Cayley-Hamilton theorem for the matrix: A = [[1, 2],
+            [2, -1]] and hence find A⁻¹.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q2a]</span> Verify Cayley Hamilton theorem for the matrix [[3, 1, 1],
+            [-1, 5, -1], [1, -1, 3]]. Hence find A⁻¹.
+        </li>
+    </ul>
+
+    <h3>Topic: Rank of Matrix (Normal Form)</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1a]</span> Find the rank of the matrix A = [[1, 2, 3, -4], [-2, 3, 7,
+            -1], [1, 9, 16, -13]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q3c]</span> Find the rank of the matrix A = [[1, 2, -1, 3], [4, 1, 2, 1],
+            [3, -1, 1, 2], [1, 2, 0, 1]] by reducing it into Normal form.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q3a]</span> Find the rank of matrix: A = [[2, 3, 4, -1], [5, 2, 0, -1],
+            [-4, 5, 12, -1]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1b]</span> For which value of 'K' is the rank of the matrix A = [[2, 1,
+            2], [1, 1, 3], [4, 3, 6]] equal to 2.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q3a]</span> Find the rank of the matrix A = [[1, 3, 4, 2], [2, -1, 3, 2],
+            [3, -5, 2, 2], [6, -3, 8, 6]] by reducing it to normal form.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q4a]</span> Reduce the matrix A to its normal form, when A = [[1, 2,
+            -1, 4], [2, 4, 3, 4], [1, 2, 3, 4], [-1, -2, 6, -7]] hence, find the rank of A.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q1b]</span> Define rank of a matrix.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q3a]</span> Find the rank of the matrix [[1, 2, -1, 3], [4, 1, 2, 1], [3,
+            -1, 1, 2], [1, 2, 0, 1]] by reducing it to normal form.
+        </li>
+    </ul>
+
+    <h3>Topic: Consistency of Linear Equations</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q3b]</span> Test consistency and solve: 4x - y = 12, -x + 5y - 2z = 0,
+            -2y + 4z = -8.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q3b]</span> Apply matrix method to solve: x + y - z = 3, 3x - y + 2z =
+            [val], 2x - 2y + 3z = 2, x - y + z = -1.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q3b]</span> Investigate values of &lambda; and &mu; so equations
+            2x+3y+5z=9, 7x+3y-2z=8, 2x+3y+&lambda;z=&mu; have (i) No solution (ii) Unique (iii) Infinite.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q4b]</span> Test for consistency and solve: 5x+3y+7z=4, 3x+26y+2z=9,
+            7x+2y+11z=5.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q3b]</span> For what value of &lambda; do equations x+y+z=1,
+            x+2y+4z=&lambda;, x+4y+10z=&lambda;² have a solution? Solve completely.
+        </li>
+    </ul>
+
+    <h3>Topic: Eigenvalues & Eigenvectors</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1b]</span> If A = [[2, 3], [0, 1]] find eigenvalues of A² + A + I.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q3a]</span> Find eigen values and vectors of [[-2, 2, -3], [2, 1, -6],
+            [-1, -2, 0]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q2a]</span> Find eigen values and vectors of [[8, -6, 2], [-6, 7, -4],
+            [2, -4, 3]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q2a]</span> Find eigen values and vectors of [[4, 2, -2], [-5, 3, 2],
+            [-2, 4, 1]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1b]</span> Find latent roots of matrix A = [[3, 1, 4], [0, 2, 6],
+            [0, 0, 5]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q4c]</span> Find eigen values and vectors for A = [[1, 1, 1], [1, 2,
+            1], [3, 2, 3]].
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q3c]</span> Find eigen values and vectors of A = [[-5, 2], [2, -2]].
+        </li>
+    </ul>
+
+    <h2 id="mod2">Module II: Differential Calculus</h2>
+
+    <div class="trend-box">
+        <span class="trend-title">🔥 HIGH YIELD TRENDS:</span>
+        <ul>
+            <li><strong>Critical:</strong> Leibnitz Theorem (Find n-th derivative at x=0).</li>
+            <li><strong>High:</strong> Euler's Theorem (Homogeneous functions).</li>
+            <li><strong>High:</strong> Jacobian (Functional Dependence).</li>
+            <li><strong>Medium:</strong> Expansion of functions (Taylor/Maclaurin).</li>
+        </ul>
+    </div>
+
+    <h3>Topic: Leibnitz Theorem (n-th Derivative)</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1d]</span> If y = 1/(1-x) then find y₁₀.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q4a]</span> If y = (sin⁻¹x)² , find (yₙ)₀.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q1c]</span> Find nth derivative of (e³ˣ + e⁻³ˣ).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q2b]</span> If cos⁻¹(y/b) = log(x/n)ⁿ, prove (x²)yₙ₊₂ + (2n+1)x yₙ₊₁ +
+            (n²+n²)yₙ = 0.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1c]</span> Find the nth derivative of log(3x² + x³).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q2b]</span> If y = (x + √(1+x²))ᵐ, prove (1+x²)yₙ₊₂ + (2n+1)xyₙ₊₁ +
+            (n²-m²)yₙ = 0. Find yₙ(0).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1d]</span> Find nth derivative of log x².
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q2d]</span> If y = tan⁻¹x prove (1+x²)yₙ₊₂ + (2n+1)yₙ₊₁ + n(n+1)yₙ =
+            0. Determine values at x=0.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q1c]</span> Find the n-th derivative of log x².
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q2b]</span> Find the value of the nth derivative of y = e^(m sin⁻¹x) for
+            x=0.
+        </li>
+    </ul>
+
+    <h3>Topic: Euler's Theorem & Partial Differentiation</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1c]</span> If u=2x+3y, v=x-3y find ∂v/∂x and ∂x/∂v.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q4b]</span> Verify Euler's theorem for Z = (x¹/³ + y¹/³) / (x¹/² + y¹/²).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q1d]</span> If u = x φ(y/x), find x(∂u/∂x) + y(∂u/∂y).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q4c]</span> State Euler's theorem. Prove x(∂u/∂x) + y(∂u/∂y) + z(∂u/∂z) =
+            2tan u, where u = sin⁻¹((x³+y³+z³)/(ax+by+cz)).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1d]</span> If u = (x+y)/(√x+√y) find x(∂u/∂x) + y(∂u/∂y).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q4c]</span> If xˣ yʸ zᶻ = c, show that at x=y=z, ∂²z/∂x∂y = -(x log
+            ex)⁻¹.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1c]</span> If u = sin⁻¹(x/y) + tan⁻¹(x/y), find x(∂u/∂x) +
+            y(∂u/∂y).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q3a]</span> If xˣ yʸ zᶻ = c, show that at x=y=z, ∂²z/∂x∂y = -(x log
+            ex)⁻¹.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q1d]</span> State Euler's theorem on homogeneous function.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q4c]</span> If V=(x²+y²+z²)^(m/2), find m (m≠0) which makes ∂²V/∂x² +
+            ∂²V/∂y² + ∂²V/∂z² = 0.
+        </li>
+    </ul>
+
+    <h3>Topic: Jacobian & Functional Dependence</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q4c]</span> If x+y+z=u, y+z=uv, z=uvw show ∂(x,y,z)/∂(u,v,w) = u²v.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q4a]</span> Prove functions u=x+y-z, v=x-y+z, w=x²+y²+z²-2yz are not
+            independent and find relation.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q4a]</span> If u=xy+yz+zx, v=x²+y²+z², w=x+y+z determine if functional
+            relationship exists and find it.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q4b]</span> If y₁=x₂x₃/x₁, y₂=x₃x₁/x₂, y₃=x₁x₂/x₃ show Jacobian of
+            y₁,y₂,y₃ w.r.t x₁,x₂,x₃ is 4.
+        </li>
+    </ul>
+
+    <h3>Topic: Expansion & Extrema (Maxima/Minima)</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q2b]</span> Lagrange's multipliers: volume of largest rectangular
+            parallelopiped in ellipsoid.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q4b]</span> Expand eˣ sin y in powers of x and y up to 3rd degree.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q4b]</span> Examine f(x,y) = x³ + y³ - 3axy for max/min values.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q2c]</span> Lagrange's multipliers: volume of largest rectangular
+            parallelopiped in ellipsoid.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q3b]</span> Expand xʸ in powers of (x-1) and (y-1) upto 3rd degree.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q3c]</span> Examine f(x,y) = x³ + y³ - 3axy for max/min values.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q2c]</span> Find shortest distance from (1,2,-1) to sphere x²+y²+z²=24.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q4a]</span> Expand eˣ sin y in powers of x and y upto 3rd degree.
+        </li>
+    </ul>
+
+    <h2 id="mod3">Module III: Multiple Integrals</h2>
+
+    <div class="trend-box">
+        <span class="trend-title">🔥 HIGH YIELD TRENDS:</span>
+        <ul>
+            <li><strong>Critical (100%):</strong> Change of Order of Integration.</li>
+            <li><strong>High:</strong> Beta & Gamma Function properties/proofs.</li>
+            <li><strong>Medium:</strong> Dirichlet's Integral (Volume/Mass applications).</li>
+        </ul>
+    </div>
+
+    <h3>Topic: Change of Order of Integration</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q2c]</span> Change order in I = ∫₀¹∫ₓ²⁻ˣ xy dy dx and evaluate.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q6a]</span> Change order in ∫₀ᵃ∫ᵧᵃ x/(x²+y²) dx dy and evaluate.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q5a]</span> Change order in ∫₀²∫√(4-x²)^(4-x) f(x,y) dy dx.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q2b]</span> Change order and evaluate ∫₀ᵃ∫√(ax)ᵃ y²/√(y⁴-a²x²) dx
+            dy.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q5a]</span> Evaluate ∫₀²∫₁^(e^x) dx dy by changing the order.
+        </li>
+    </ul>
+
+    <h3>Topic: Beta & Gamma Functions</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1f]</span> Show that Γ(1/2) = √π.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q5a]</span> Show that Γ(n)Γ(1-n) = π/sin(nπ).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q1h]</span> Find value of Γ(-1/2).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q2c]</span> Prove B(l,m) = (Γ(l)Γ(m))/Γ(l+m).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q6b]</span> Prove B(m,n+1)/n = B(m+1,n)/m = B(m,n)/(m+n).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1f]</span> Evaluate Γ(-3/2).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q5b]</span> Prove β(m,n) = (Γ(m)Γ(n))/Γ(m+n).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1e]</span> Prove B(m+1,n) = m/(m+n) B(m,n).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q5a]</span> Prove (i) Γ(1/2)=√π (ii) ∫₀¹(log 1/y)ⁿ⁻¹ dy = Γ(n).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q1f]</span> Evaluate ∫₀^∞ √x e⁻ˣ dx.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q5c]</span> Prove Γ(n)Γ(n+1/2)2²ⁿ⁻¹ = √π Γ(2n).
+        </li>
+    </ul>
+
+    <h3>Topic: Double/Triple Integrals & Applications</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1e]</span> Evaluate ∫₀¹∫₀^(x²) e^(y/x) dy dx.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q5b]</span> Polar coords: ∫₀ᵃ∫₀^√(a²-x²) e^-(x²+y²) dy dx.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q5c]</span> Volume of cylindrical column on area common to parabolas
+            y²=x, x²=y cut off by z=12+y-x².
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q1g]</span> Formula of area bounded by curves y=f₁(x), y=f₂(x) and lines
+            x=a, x=b.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q6c]</span> Evaluate ∫∫∫ (x+y+z) dx dy dz where 0≤x≤1, 0≤y≤2, 2≤z≤3.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1e]</span> Evaluate ∫₀¹∫₀ˣ e^(y/x) dx dy.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q2c]</span> Mass of octant of ellipsoid x²/a² + y²/b² + z²/c² = 1,
+            density ρ=kyz.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q5c]</span> Evaluate ∫∫∫ (x-2y+z) dx dy dz where 0≤x≤1, 0≤y≤x², 0≤z≤x+y.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1f]</span> Evaluate ∫₀¹∫₀ˣ e^(y/x) dx dy.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q5b]</span> Evaluate ∫₀^∞∫₀^∞ e^-(x²+y²) dx dy (polar). Hence show
+            ∫₀^∞ e^-x² dx = √π/2.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q5c]</span> Volume of solid bounded by x=0, y=0, x+y+z=1, z=0.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q1e]</span> Evaluate ∫₀ᵃ∫₀ᵃ xy dy dx.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q5b]</span> Evaluate ∫₀^(log2) ∫₀ˣ ∫₀^(x+logy) e^(x+y+z) dx dy dz.
+        </li>
+    </ul>
+
+    <h2 id="mod4">Module IV: Vector Calculus</h2>
+
+    <div class="trend-box">
+        <span class="trend-title">🔥 HIGH YIELD TRENDS:</span>
+        <ul>
+            <li><strong>Critical:</strong> Integral Theorems (Gauss, Stoke, Green) - Verify or Evaluate.</li>
+            <li><strong>High:</strong> Directional Derivative.</li>
+            <li><strong>Medium:</strong> Irrotational/Solenoidal vectors (Curl/Div).</li>
+        </ul>
+    </div>
+
+    <h3>Topic: Gauss, Green's & Stoke's Theorems</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q2d]</span> Show ∫∫ F.n ds = 3/2 where F=4xzi - y²j + yzk over cube
+            bounded by x=0,1 y=0,1 z=0,1.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q6c]</span> Green's theorem: Evaluate ∫(x²y dx + x² dy) boundary of
+            triangle (0,0), (1,0), (1,1).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q1f]</span> State Gauss divergence theorem.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q2d]</span> Evaluate ∮F.dr by Stoke's theorem, F=y²i+x²j-(x+z)k, boundary
+            of triangle (0,0,0), (1,0,0), (1,1,0).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q5c]</span> Evaluate ∫∫ F.n ds using Gauss-Divergence. F=4xi - y²j + yzk
+            over unit cube.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1h]</span> State Stokes theorem.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q2d]</span> Verify Gauss divergence theorem for F=(x²-yz)i + ... over
+            rectangular parallelopiped.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q6a]</span> Use Green's theorem to evaluate ∫(x²+xy)dx + (x²+y²)dy where
+            C is square y=±1, x=±1.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q6b]</span> If A=(x-y)i+(x+y)j, evaluate ∮ A.dr around y=x² and y²=x.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q2a]</span> State Stoke's theorem and evaluate ∮ F.dr,
+            F=y²i+x²j-(x+z)k, triangle (0,0,0), (1,0,0), (1,1,0).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q6c]</span> Use divergence theorem to show ∫∫ ∇(x²+y²+z²).ds = 6V.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q2d]</span> Verify Stoke's theorem for F=x²i-xyj round square in z=0
+            plane bounded by x=0, y=0, x=a, y=a.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q6b]</span> Evaluate line integral ∮ A.dr, A=(3x²+6y)i-14yzj+20xz²k from
+            (0,0,0) to (1,1,1) along curve x=t, y=t², z=t³.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q6c]</span> Using Green's theorem evaluate ∫(x²y dx + x² dy), boundary of
+            triangle (0,0), (1,0), (1,1).
+        </li>
+    </ul>
+
+    <h3>Topic: Gradient, Directional Derivative & Vector Identities</h3>
+    <ul class="question-list">
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1g]</span> Find unit normal to surface xy³z²=4 at (-1, -1, 2).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q1h]</span> Determine a and b such that A=(2xy+3yz)i + ... is
+            irrotational.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2018-19, Q6a]</span> Find directional derivative of φ=5x²y... at P(1,1,1) in
+            direction of line (x-1)/2 = (y-3)/-2 = z/1.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q1e]</span> Find grad φ when φ=3x²y-y³z² at (1, -2, -1).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q5a]</span> Find directional derivative of f=x²-y²+2z² at P(1,2,3) in
+            direction of line PQ, Q(5,0,4).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2019-20, Q5b]</span> Prove F=(y²-z²...)i + ... is both solenoidal and
+            irrotational.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q1g]</span> If r=xi+yj+zk find ∇.r.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23, Q6c]</span> Determine a and b such that curl of A is zero.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1g]</span> Find unit normal vector to x²+3y²+2z²=6 at (2,0,1).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q1h]</span> If f=2x²-3y²+4z², find curl(grad f).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q6a]</span> Find directional derivative of φ=x²-y²+2z² at P(1,2,3)
+            in direction of PQ, Q(5,0,4).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2022-23 SCOP, Q6b]</span> Fluid motion v=(y+z)i... Show motion is irrotational and
+            find velocity potential.
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q1g]</span> Find normal vector to surface z=2xy at (2,1,4).
+        </li>
+        <li class="question-item">
+            <span class="source-tag">[2023-24, Q6a]</span> Find directional derivative of φ=x²yz+4xz² at (1,2,1) in
+            direction of 2i-j-2k.
+        </li>
+    </ul>
+
+</body>
+
+</html>
