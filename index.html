@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrices & Calculus - Ultimate Exam Resource</title>
+    
+    <!-- Robust MathJax Configuration -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      },
+      startup: {
+        pageReady: () => {
+          return MathJax.startup.defaultPageReady().then(() => {
+            console.log('MathJax initial typesetting complete');
+          });
+        }
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --bg: #f3f4f6;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --border: #e5e7eb;
+            --critical: #dc2626;
+            --high: #d97706;
+            --medium: #2563eb;
+        }
+
+        * { box-sizing: border-box; }
+        
+        /* Ensure full height for PDF view */
+        html, body { height: 100%; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: var(--surface);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-wrap: wrap; /* Allows wrapping on small screens */
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            border-radius: 6px;
+            transition: all 0.2s;
+            flex: 1; /* Distribute space evenly */
+            white-space: nowrap;
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: #e5e7eb;
+        }
+
+        /* Content Sections */
+        .page-section {
+            display: none;
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            flex-grow: 1; /* Allows section to fill space */
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PDF Viewer Specifics */
+        .pdf-wrapper {
+            width: 100%;
+            height: 80vh; /* Takes up 80% of the viewport height */
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #eee;
+        }
+        
+        iframe.pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 700;
+            /* Default width removed to allow specific overrides */
+        }
+        
+        /* Standard Question Tables */
+        #questions th { width: 15%; }
+        
+        /* Syllabus Table Specifics */
+        .syllabus-table th:nth-child(1) { width: 10%; text-align: center; }
+        .syllabus-table th:nth-child(2) { width: 60%; }
+        .syllabus-table th:nth-child(3) { width: 15%; text-align: center; }
+        .syllabus-table th:nth-child(4) { width: 15%; text-align: center; }
+        .syllabus-table td.center-text { text-align: center; vertical-align: middle; }
+
+        td.question-col {
+            width: 70%;
+        }
+
+        td.source-col {
+            width: 15%;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* Headers */
+        h1, h2, h3 { color: #111827; }
+        h1 { text-align: center; margin-bottom: 30px; }
+        h2 { 
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--primary);
+        }
+        h3 {
+            background: #eff6ff;
+            padding: 10px;
+            border-left: 4px solid var(--primary);
+            margin-top: 20px;
+        }
+
+        /* Gold Mine specific */
+        .gold-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .gold-card {
+            border: 2px solid #fbbf24;
+            background: #fffbeb;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .gold-badge {
+            background: #fbbf24;
+            color: #78350f;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Trend Box Styles */
+        .trend-module {
+            margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .trend-header {
+            background: #f3f4f6;
+            padding: 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .trend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .trend-item {
+            padding: 15px;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .trend-item:last-child { border-bottom: none; }
+        
+        .tag {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            white-space: nowrap;
+            min-width: 100px;
+            text-align: center;
+        }
+        .tag-critical { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .tag-high { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+        .tag-medium { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+
+        /* Question Paper Cards */
+        .paper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .paper-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .paper-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .paper-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .paper-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .action-btn, .download-notes-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .action-btn { flex: 1; }
+        
+        .btn-view {
+            background-color: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        .btn-view:hover { background-color: #e5e7eb; }
+        
+        .btn-download, .download-notes-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-download:hover, .download-notes-btn:hover { background-color: var(--secondary); }
+
+
+        /* Print Button */
+        .print-btn {
+            background: #4b5563;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            float: right;
+            margin-bottom: 10px;
+        }
+        .print-btn:hover { background: #374151; }
+
+        @media print {
+            @page {
+                margin: 2cm; /* Sets a reasonable default margin for all pages */
+                size: auto;
+            }
+
+            body { 
+                background: white; 
+                padding: 0; 
+                margin: 0; 
+                font-size: 12pt; /* Better readability for print */
+                color: black;
+            }
+
+            .nav, .print-btn, .download-notes-btn { display: none !important; }
+            
+            .page-section { 
+                display: none !important; 
+                box-shadow: none; 
+                padding: 0;
+                margin: 0;
+                border: none; /* Remove borders that might look weird */
+            }
+            
+            .page-section.printing { 
+                display: block !important; 
+            }
+            
+            .container { 
+                max-width: 100%; 
+                width: 100%;
+                margin: 0; 
+                padding: 0;
+            }
+            
+            h1 { font-size: 18pt; margin-bottom: 20px; }
+            h2 { font-size: 16pt; margin-top: 30px; border-bottom: 1px solid #000; }
+            h3 { font-size: 14pt; margin-top: 20px; }
+
+            table, tr, td, th { 
+                page-break-inside: avoid; 
+                border-color: #000 !important; /* Ensure borders are black for print */
+            }
+            
+            /* Adjust grids for print */
+            .gold-grid { 
+                display: block; 
+            }
+            .gold-card { 
+                page-break-inside: avoid; 
+                margin-bottom: 20px; 
+                border: 1px solid #000; /* Better visibility on paper */
+            }
+            
+            .trend-module { 
+                page-break-inside: avoid; 
+                border: 1px solid #000;
+            }
+            
+            .paper-grid { 
+                display: block; 
+            }
+            .paper-card { 
+                border: 1px solid #000; 
+                margin-bottom: 15px; 
+                page-break-inside: avoid; 
+                box-shadow: none;
+            }
+            
+            .action-btn { display: none; } /* Don't print buttons */
+            
+            /* For Notes printing */
+            .pdf-wrapper { height: auto; border: none; }
+            .pdf-wrapper iframe { display: none; } /* Cannot print iframe content easily */
+            #notes::after {
+                content: "Refer to the attached PDF file for notes.";
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+                font-style: italic;
+            }
+        }
+        
+        /* Responsiveness for PDF view */
+        @media (max-width: 768px) {
+            .pdf-wrapper { height: 70vh; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav">
+        <button class="nav-btn active" onclick="switchTab('strategy')">1. High Yield Trends</button>
+        <button class="nav-btn" onclick="switchTab('goldmine')">2. The Gold Mine (Cheat Sheet)</button>
+        <button class="nav-btn" onclick="switchTab('questions')">3. All Questions (Bank)</button>
+        <button class="nav-btn" onclick="switchTab('papers')">4. Question Papers (PDFs)</button>
+        <button class="nav-btn" onclick="switchTab('syllabus')">5. Syllabus</button>
+        <button class="nav-btn" onclick="switchTab('notes')">6. Notes</button>
+    </div>
+
+    <!-- PAGE 1: STRATEGY & TRENDS -->
+    <div id="strategy" class="page-section active">
+        <button class="print-btn" onclick="printSection('strategy')">🖨️ Print Trends</button>
+        <h1>Examination Trends & Priority Analysis</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Based on 5 Years of Papers (2018-2024). Focus on Critical topics first.</p>
+        
+        <!-- Module I -->
+        <div class="trend-module">
+            <div class="trend-header">Module I: Matrices</div>
+            <ul class="trend-list">
+                <li class="trend-item">
+                    <span class="tag tag-critical">Critical (100%)</span>
+                    <div><strong>Cayley-Hamilton Theorem:</strong> Verify the equation & Find Inverse. This appears in almost every paper's Section B.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-critical">Critical</span>
+                    <div><strong>Rank of Matrix (Normal Form):</strong> Specifically reducing a 4x4 matrix to Normal Form. The exact same matrix often repeats.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-high">High Yield</span>
+                    <div><strong>Consistency of Linear Equations:</strong> Finding values of $\lambda$ and $\mu$ for No/Unique/Infinite solutions.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-medium">Medium</span>
+                    <div><strong>Eigenvalues/Eigenvectors:</strong> Standard calculation questions, usually $3\times3$ matrices.</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Module II -->
+        <div class="trend-module">
+            <div class="trend-header">Module II: Differential Calculus</div>
+            <ul class="trend-list">
+                <li class="trend-item">
+                    <span class="tag tag-critical">Critical</span>
+                    <div><strong>Leibniz Theorem:</strong> Finding the $n$-th derivative at $x=0$. Common functions: $\log(x^2)$, $\sin^{-1}(x)$, $\tan^{-1}(x)$.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-high">High Yield</span>
+                    <div><strong>Euler's Theorem:</strong> Verification for Homogeneous functions. Often involves partial differentiation.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-high">High Yield</span>
+                    <div><strong>Jacobian:</strong> Checking for Functional Dependence between $u, v, w$.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-medium">Medium</span>
+                    <div><strong>Series Expansion:</strong> Maclaurin/Taylor series expansion of functions like $e^x \sin y$.</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Module III -->
+        <div class="trend-module">
+            <div class="trend-header">Module III: Multiple Integrals</div>
+            <ul class="trend-list">
+                <li class="trend-item">
+                    <span class="tag tag-critical">Critical (100%)</span>
+                    <div><strong>Change of Order of Integration:</strong> This is a guaranteed question. You MUST draw the region to get marks.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-high">High Yield</span>
+                    <div><strong>Beta & Gamma Functions:</strong> Proofs like $\Gamma(1/2)=\sqrt{\pi}$ and simple evaluations. Easy 2-mark questions.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-medium">Medium</span>
+                    <div><strong>Dirichlet's Integral:</strong> Applications to Area and Volume (e.g., Cylindrical column, Ellipsoid mass).</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Module IV -->
+        <div class="trend-module">
+            <div class="trend-header">Module IV: Vector Calculus</div>
+            <ul class="trend-list">
+                <li class="trend-item">
+                    <span class="tag tag-critical">Critical</span>
+                    <div><strong>Integral Theorems:</strong> Verify/Evaluate Gauss Divergence, Stoke's, or Green's Theorem. The "Triangle" and "Cube" boundary problems are standard.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-high">High Yield</span>
+                    <div><strong>Directional Derivative:</strong> Finding D.D. in the direction of a line or vector. Very common in Section C.</div>
+                </li>
+                <li class="trend-item">
+                    <span class="tag tag-medium">Medium</span>
+                    <div><strong>Irrotational/Solenoidal:</strong> Finding constants $a, b$ to make a vector irrotational (Curl = 0).</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PAGE 2: GOLD MINE -->
+    <div id="goldmine" class="page-section">
+        <button class="print-btn" onclick="printSection('goldmine')">🖨️ Print Cheat Sheet</button>
+        <h1>🏆 The Gold Mine (Guaranteed Questions)</h1>
+        <p style="text-align: center; margin-bottom: 30px;">These questions have appeared identically or with minor number changes in multiple years. Mastering these ensures passing marks.</p>
+
+        <div class="gold-grid">
+            <div class="gold-card">
+                <span class="gold-badge">Matrices (100% Certainty)</span>
+                <h3>Rank by Normal Form</h3>
+                <p><strong>Question:</strong> Find the rank of matrix by reducing to Normal Form:</p>
+                <p>$$A=\begin{bmatrix}1&2&-1&3\\ 4&1&2&1\\ 3&-1&1&2\\ 1&2&0&1\end{bmatrix}$$</p>
+                <p><em>Sources: 2018-19, 2023-24</em></p>
+            </div>
+
+            <div class="gold-card">
+                <span class="gold-badge">Matrices (High Prob)</span>
+                <h3>Consistency Parameters</h3>
+                <p><strong>Question:</strong> Find $\lambda$ and $\mu$ for solution types:</p>
+                <p>$$2x+3y+5z=9$$
+                   $$7x+3y-2z=8$$
+                   $$2x+3y+\lambda z=\mu$$</p>
+                <p><em>Sources: 2022-23, 2023-24</em></p>
+            </div>
+
+            <div class="gold-card">
+                <span class="gold-badge">Diff Calc (Exact Repeat)</span>
+                <h3>Lagrange's Multipliers</h3>
+                <p><strong>Question:</strong> Find volume of largest rectangular parallelopiped inscribed in ellipsoid:</p>
+                <p>$$\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$$</p>
+                <p><em>Sources: 2018-19, 2022-23 SCOP</em></p>
+            </div>
+
+            <div class="gold-card">
+                <span class="gold-badge">Vector Calc (Exact Repeat)</span>
+                <h3>Green's Theorem (Triangle)</h3>
+                <p><strong>Question:</strong> Evaluate $\int_C (x^2y dx + x^2 dy)$ around triangle with vertices $(0,0), (1,0), (1,1)$.</p>
+                <p><em>Sources: 2018-19, 2023-24</em></p>
+            </div>
+
+            <div class="gold-card">
+                <span class="gold-badge">Integration (Concept Repeat)</span>
+                <h3>Change of Order</h3>
+                <p><strong>Question:</strong> Change order and evaluate:</p>
+                <p>$$I = \int_{0}^{a}\int_{y}^{a} \frac{x}{x^2+y^2} dx dy$$</p>
+                <p><em>(Or variations like $\int_0^1 \int_x^{2-x}$)</em></p>
+                <p><em>Sources: ALL 5 Years have this type.</em></p>
+            </div>
+
+            <div class="gold-card">
+                <span class="gold-badge">Diff Calc (Recurring)</span>
+                <h3>Jacobian</h3>
+                <p><strong>Question:</strong> If $x+y+z=u, y+z=uv, z=uvw$, show Jacobian is $u^2v$.</p>
+                <p><em>Sources: 2018-19, 2023-24 (similar logic)</em></p>
+            </div>
+            
+            <div class="gold-card">
+                <span class="gold-badge">Diff Calc (Recurring)</span>
+                <h3>Leibniz Theorem</h3>
+                <p><strong>Question:</strong> Find nth derivative of $\log(x^2)$ or $\log(3x^2+x^3)$.</p>
+                <p><em>Sources: 2022-23, 2023-24</em></p>
+            </div>
+
+            <div class="gold-card">
+                <span class="gold-badge">Vector Calc (Recurring)</span>
+                <h3>Directional Derivative</h3>
+                <p><strong>Pattern:</strong> Find D.D. of $\phi$ at point $P$ in direction of line $PQ$.</p>
+                <p><em>Sources: 2018, 2019, 2023</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: ALL QUESTIONS -->
+    <div id="questions" class="page-section">
+        <button class="print-btn" onclick="printSection('questions')">🖨️ Print Question Bank</button>
+        <h1>Complete Question Bank (2018-2024)</h1>
+
+        <!-- MODULE I -->
+        <h2>Module I: Matrices</h2>
+        
+        <h3>Topic: Rank of Matrix</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Normal Form</td>
+                <td>Find the rank of the matrix by reducing it into Normal form:
+                $$A=\begin{bmatrix}1&2&-1&3\\ 4&1&2&1\\ 3&-1&1&2\\ 1&2&0&1\end{bmatrix}$$</td>
+                <td>2018-19 Q3(c)<br>2023-24 Q3(a)</td>
+            </tr>
+            <tr>
+                <td>Normal Form</td>
+                <td>Find the rank of matrix:
+                $$A=\begin{bmatrix}2&3&4&-1\\ 5&2&0&-1\\ -4&5&12&-1\end{bmatrix}$$</td>
+                <td>2019-20 Q3(a)</td>
+            </tr>
+            <tr>
+                <td>Normal Form</td>
+                <td>Find the rank of the matrix by reducing it to normal form:
+                $$A=\begin{bmatrix}1&3&4&2\\ 2&-1&3&2\\ 3&-5&2&2\\ 6&-3&8&6\end{bmatrix}$$</td>
+                <td>2022-23 Q3(a)</td>
+            </tr>
+            <tr>
+                <td>Normal Form</td>
+                <td>Reduce the matrix A to its normal form, when:
+                $$A=\begin{bmatrix}1&2&-1&4\\ 2&4&3&4\\ 1&2&3&4\\ -1&-2&6&-7\end{bmatrix}$$
+                hence, find the rank of A.</td>
+                <td>2022-23 SCOP Q4(a)</td>
+            </tr>
+            <tr>
+                <td>Determinant</td>
+                <td>Find the rank of the matrix
+                $$A=\begin{bmatrix}1&2&3&-4\\ -2&3&7&-1\\ 1&9&16&-13\end{bmatrix}$$</td>
+                <td>2018-19 Q1(a)</td>
+            </tr>
+            <tr>
+                <td>Unknown Var</td>
+                <td>For which value of 'K' the rank of the matrix:
+                $$A=\begin{bmatrix}2&1&2\\ 1&1&3\\ K&3&6\end{bmatrix}$$ is 2</td>
+                <td>2022-23 Q1(b)</td>
+            </tr>
+            <tr>
+                <td>Definition</td>
+                <td>Define rank of a matrix.</td>
+                <td>2023-24 Q1(b)</td>
+            </tr>
+        </table>
+
+        <h3>Topic: Eigenvalues, Eigenvectors & Cayley-Hamilton</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Cayley-Hamilton</td>
+                <td>Find the characteristic equation of matrix
+                $$A=\begin{bmatrix}2&-1&1\\ -1&2&-1\\ 1&-1&2\end{bmatrix}$$
+                and verify that it is satisfied by A and hence obtain $A^{-1}$.</td>
+                <td>2018-19 Q2(a)<br>2019-20 Q3(c)</td>
+            </tr>
+            <tr>
+                <td>Cayley-Hamilton</td>
+                <td>Verify Cayley-Hamilton theorem for the matrix:
+                $$A=\begin{bmatrix}1&2\\ 2&-1\end{bmatrix}$$
+                and hence find $A^{-1}$.</td>
+                <td>2022-23 Q3(c)</td>
+            </tr>
+            <tr>
+                <td>Cayley-Hamilton</td>
+                <td>Verify Cayley Hamilton theorem for the matrix
+                $$A=\begin{bmatrix}3&1&1\\ -1&5&-1\\ 1&-1&3\end{bmatrix}$$
+                Hence find $A^{-1}$.</td>
+                <td>2023-24 Q2(a)</td>
+            </tr>
+            <tr>
+                <td>Eigenvalues/Vectors</td>
+                <td>Find the eigen values and eigen vectors of the matrix
+                $$A=\begin{bmatrix}-2&2&-3\\ 2&1&-6\\ -1&-2&0\end{bmatrix}$$</td>
+                <td>2018-19 Q3(a)</td>
+            </tr>
+            <tr>
+                <td>Eigenvalues/Vectors</td>
+                <td>Find the eigen values and eigen vectors of the matrix:
+                $$A=\begin{bmatrix}8&-6&2\\ -6&7&-4\\ 2&-4&3\end{bmatrix}$$</td>
+                <td>2019-20 Q2(a)</td>
+            </tr>
+            <tr>
+                <td>Eigenvalues/Vectors</td>
+                <td>Find the eigen value and eigen vectors of the matrix:
+                $$A=\begin{bmatrix}4&2&-2\\ -5&3&2\\ -2&4&1\end{bmatrix}$$</td>
+                <td>2022-23 Q2(a)</td>
+            </tr>
+             <tr>
+                <td>Eigenvalues/Vectors</td>
+                <td>Find the latent roots of matrix:
+                $$A=\begin{bmatrix}3&1&4\\ 0&2&6\\ 0&0&5\end{bmatrix}$$</td>
+                <td>2022-23 SCOP Q1(b)</td>
+            </tr>
+            <tr>
+                <td>Eigenvalues/Vectors</td>
+                <td>Find the eigen values and the corresponding eigen vectors for the following matrix:
+                $$\Lambda=\begin{bmatrix}1&1&1\\ 1&2&1\\ 3&2&3\end{bmatrix}$$</td>
+                <td>2022-23 SCOP Q4(c)</td>
+            </tr>
+            <tr>
+                <td>Eigenvalues/Vectors</td>
+                <td>Find the eigen values and corresponding eigen vectors of the matrix:
+                $$A=\begin{bmatrix}-5&2\\ 2&-2\end{bmatrix}$$</td>
+                <td>2023-24 Q3(c)</td>
+            </tr>
+            <tr>
+                <td>Short Answer</td>
+                <td>If $A=\begin{bmatrix}2&3\\ 0&1\end{bmatrix}$ then find the eigen values of $A^{2}+A+I$.</td>
+                <td>2018-19 Q1(b)</td>
+            </tr>
+        </table>
+
+        <h3>Topic: Consistency of Linear Equations</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Find Solution</td>
+                <td>Test the consistency of following system of linear equations and hence find the solution
+                $$4x-y=12, -x+5y-2z=0, -2y+4z=-8$$</td>
+                <td>2018-19 Q3(b)</td>
+            </tr>
+            <tr>
+                <td>Find Solution</td>
+                <td>Apply the matrix method to solve the system of equations:
+                $$x+y-z=3, \quad 3x-y+2z=?, \quad 2x-2y+3z=2, \quad x-y+z=-1$$</td>
+                <td>2019-20 Q3(b)</td>
+            </tr>
+            <tr>
+                <td>Parameter Analysis</td>
+                <td>Investigate the values of $\lambda$ and $\mu$ so that the equations:
+                $$2x+3y+5z=9$$
+                $$7x+3y-2z=8$$
+                $$2x+3y+\lambda z=\mu$$
+                have: (i) No solution, (ii) A unique solution, (iii) An infinite number of solution.</td>
+                <td>2022-23 Q3(b)</td>
+            </tr>
+             <tr>
+                <td>Parameter Analysis</td>
+                <td>For what value of $\lambda$ the equations
+                $$x+y+z=1$$
+                $$x+2y+4z=\lambda$$
+                $$x+4y+10z=\lambda^{2}$$
+                has a solution and solve them completely in each case.</td>
+                <td>2023-24 Q3(b)</td>
+            </tr>
+            <tr>
+                <td>Find Solution</td>
+                <td>Tests for consistency and solve the following system of equations:
+                $$5x+3y+7z=4$$
+                $$3x+26y+2z=9$$
+                $$7x+2y+11z=5$$</td>
+                <td>2022-23 SCOP Q4(b)</td>
+            </tr>
+        </table>
+        
+        <h3>Topic: Matrix Operations & Types</h3>
+        <table>
+             <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Hermitian</td>
+                <td>Show that the matrix $A=\begin{bmatrix}2&3-4i\\ 3+4i&2\end{bmatrix}$ is Hermitian.</td>
+                <td>2019-20 Q1(a)</td>
+            </tr>
+             <tr>
+                <td>Conjugate Transpose</td>
+                <td>If the matrix $A=\begin{bmatrix}1+i&3-5i\\ 2i&5\end{bmatrix}$, find $(A^{\theta})$.</td>
+                <td>2022-23 SCOP Q1(a)</td>
+            </tr>
+             <tr>
+                <td>Definitions</td>
+                <td>Define elementary matrix.</td>
+                <td>2019-20 Q1(b)</td>
+            </tr>
+            <tr>
+                <td>Definitions</td>
+                <td>Define unitary matrix.</td>
+                <td>2022-23 Q1(a)</td>
+            </tr>
+            <tr>
+                <td>Definitions</td>
+                <td>Define orthogonal matrix.</td>
+                <td>2023-24 Q1(a)</td>
+            </tr>
+        </table>
+
+        <!-- MODULE II -->
+        <h2>Module II: Differential Calculus</h2>
+
+        <h3>Topic: Leibniz Theorem & nth Derivative</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+             <tr>
+                <td>Logarithmic</td>
+                <td>Find the nth derivative of $\log(3x^{2}+x^{3})$.</td>
+                <td>2022-23 Q1(c)</td>
+            </tr>
+             <tr>
+                <td>Logarithmic</td>
+                <td>Find the $n^{th}$ derivative of $\log x^{2}$.</td>
+                <td>2022-23 SCOP Q1(d)<br>2023-24 Q1(c)</td>
+            </tr>
+            <tr>
+                <td>Inverse Trig</td>
+                <td>If $y=(\sin^{-1}x)^{2}$, find $(y_{n})_{0}$.</td>
+                <td>2018-19 Q4(a)</td>
+            </tr>
+            <tr>
+                <td>Algebraic/Root</td>
+                <td>If $y=(x+\sqrt{1+x^{2}})^{m}$, prove that:
+                $$(1+x^{2})y_{n+2}+(2n+1)xy_{n+1}+(n^{2}-m^{2})y_{n}=0$$
+                and hence find $y_{n}(0)$.</td>
+                <td>2022-23 Q2(b)</td>
+            </tr>
+             <tr>
+                <td>Inverse Trig</td>
+                <td>If $y=\tan^{-1}x$ prove that:
+                $$(1+x^{2})y_{n+2}+(2n+1)y_{n+1}+n(n+1)y_{n}=0$$
+                hence, determine the values of all the derivatives of y w.r.t. x using $x=0$.</td>
+                <td>2022-23 SCOP Q2(d)</td>
+            </tr>
+            <tr>
+                <td>Exponential/Trig</td>
+                <td>Find the value of the nth derivative of $y=e^{m\sin^{-1}x}$ for $x=0$.</td>
+                <td>2023-24 Q2(b)</td>
+            </tr>
+             <tr>
+                <td>Inverse Trig</td>
+                <td>If $\cos^{-1}(\frac{y}{b})=\log(\frac{x}{n})^{n}$, prove that
+                $$x^{2}y_{n+2}+(2n+1)xy_{n+1}+(n^{2}+m^{2})y_{n}=0$$</td>
+                <td>2019-20 Q2(b)</td>
+            </tr>
+             <tr>
+                <td>Exponential</td>
+                <td>Find nth derivative of $(e^{3x}+e^{-3x})$.</td>
+                <td>2019-20 Q1(c)</td>
+            </tr>
+            <tr>
+                <td>Rational</td>
+                <td>If $y=\frac{1}{1-x}$ then find $y_{10}$.</td>
+                <td>2018-19 Q1(d)</td>
+            </tr>
+        </table>
+
+        <h3>Topic: Partial Differentiation & Euler's Theorem</h3>
+        <table>
+             <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Euler's Thm</td>
+                <td>Verify Euler's theorem for $Z=\frac{x^{1/3}+y^{1/3}}{x^{1/2}+y^{1/2}}.$</td>
+                <td>2018-19 Q4(b)</td>
+            </tr>
+             <tr>
+                <td>Euler's Thm</td>
+                <td>If $u=\frac{x+y}{\sqrt{x}+\sqrt{y}}$ find $x\frac{\partial u}{\partial x}+y\frac{\partial u}{\partial y}$.</td>
+                <td>2022-23 Q1(d)</td>
+            </tr>
+            <tr>
+                <td>Euler's Thm</td>
+                <td>If $u=\sin^{-1}\frac{x}{y}+\tan^{-1}\frac{x}{y}$ then find the value of $x\frac{\partial u}{\partial x}+y\frac{\partial u}{\partial y}$.</td>
+                <td>2022-23 SCOP Q1(c)</td>
+            </tr>
+             <tr>
+                <td>Euler's Thm</td>
+                <td>If $u=x\phi(\frac{y}{x})$, then find the value $x\frac{\partial u}{\partial x}+y\frac{\partial u}{\partial y}$.</td>
+                <td>2019-20 Q1(d)</td>
+            </tr>
+            <tr>
+                <td>Euler's Thm</td>
+                <td>State Euler's theorem and prove that $x\frac{\partial u}{\partial x}+y\frac{\partial u}{\partial y}+z\frac{\partial u}{\partial z}=2\tan u$ where $u=\sin^{-1}(\frac{x^{3}+y^{3}+z^{3}}{ax+by+cz})$.</td>
+                <td>2019-20 Q4(c)</td>
+            </tr>
+            <tr>
+                <td>Definition</td>
+                <td>State Euler's theorem on homogeneous function.</td>
+                <td>2023-24 Q1(d)</td>
+            </tr>
+            <tr>
+                <td>Change of Variables</td>
+                <td>If $u=2x+3y,$ $v=x-3y$ then find $\frac{\partial v}{\partial x}$ and $\frac{\partial x}{\partial v}.$</td>
+                <td>2018-19 Q1(c)</td>
+            </tr>
+             <tr>
+                <td>Partial Diff</td>
+                <td>If $x^{x}y^{y}z^{z}=c$, show that at $x=y=z, \frac{\partial^{2}z}{\partial x\partial y}=-(x\log ex)^{-1}$.</td>
+                <td>2022-23 Q4(c)<br>2022-23 SCOP Q3(a)</td>
+            </tr>
+             <tr>
+                <td>Laplace Equation</td>
+                <td>If $V=(x^{2}+y^{2}+z^{2})^{m/2}$ then find the value of $m(m\neq0)$ which will make $\frac{\partial^{2}V}{\partial x^{2}}+\frac{\partial^{2}V}{\partial y^{2}}+\frac{\partial^{2}V}{\partial z^{2}}=0$.</td>
+                <td>2023-24 Q4(c)</td>
+            </tr>
+            <tr>
+                <td>Functional Relation</td>
+                <td>If $u=xy+yz+zx$, $V=x^{2}+y^{2}+z^{2}$ and $w=x+y+z$ determine whether there is a functional relationship between u, v, w and if so, find it.</td>
+                <td>2022-23 Q4(a)</td>
+            </tr>
+             <tr>
+                <td>Functional Relation</td>
+                <td>Prove that the functions $u=x+y-z$, $v=x-y+z$, $w=x^{2}+y^{2}+z^{2}-2yz$ are not independent (functionally dependent) and then find relation between them.</td>
+                <td>2019-20 Q4(a)</td>
+            </tr>
+             <tr>
+                <td>Jacobian</td>
+                <td>If $x+y+z=u$, $y+z=uv$, $z=uvw$ then show that $\frac{\partial(x,y,z)}{\partial(u,v,w)}=u^{2}v.$</td>
+                <td>2018-19 Q4(c)</td>
+            </tr>
+            <tr>
+                <td>Jacobian</td>
+                <td>If $y_{1}=\frac{x_{2}x_{3}}{x_{1}}$, $y_{2}=\frac{x_{3}x_{1}}{x_{2}}$, $y_{3}=\frac{x_{1}x_{2}}{x_{3}}$ then show that the Jacobian of $y_{1},y_{2},y_{3}$ with respect to $x_{1},x_{2},x_{3}$ is 4.</td>
+                <td>2023-24 Q4(b)</td>
+            </tr>
+        </table>
+
+        <h3>Topic: Maxima/Minima & Series Expansion</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Lagrange Multipliers</td>
+                <td>Use the method of the Lagrange's multipliers to find the volume of the largest rectangular parallelopiped that can be inscribed in the ellipsoid $\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{z^{2}}{c^{2}}=1.$</td>
+                <td>2018-19 Q2(b)<br>2022-23 SCOP Q2(c)</td>
+            </tr>
+             <tr>
+                <td>Optimization</td>
+                <td>Find the shortest distance from the point $(1,2,-1)$ to the sphere $x^{2}+y^{2}+z^{2}=24$.</td>
+                <td>2023-24 Q2(c)</td>
+            </tr>
+            <tr>
+                <td>Max/Min</td>
+                <td>Examine $f(x,y)=x^{3}+y^{3}-3axy$ for maximum and minimum values.</td>
+                <td>2022-23 Q4(b)<br>2022-23 SCOP Q3(c)</td>
+            </tr>
+            <tr>
+                <td>Expansion</td>
+                <td>Expand $e^{x}\sin y$ in powers of x and y upto terms of third degree.</td>
+                <td>2019-20 Q4(b)<br>2023-24 Q4(a)</td>
+            </tr>
+             <tr>
+                <td>Expansion</td>
+                <td>Expand $x^{y}$ in powers of $(x-1)$ and $(y-1)$ upto the third degree terms.</td>
+                <td>2022-23 SCOP Q3(b)</td>
+            </tr>
+        </table>
+
+        <!-- MODULE III -->
+        <h2>Module III: Multiple Integrals</h2>
+
+        <h3>Topic: Evaluation & Change of Order</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+             <tr>
+                <td>Change of Order</td>
+                <td>Change the order of integration in $I=\int_{0}^{1}\int_{x}^{2-x}xy~dy~dx$ and hence evaluate the same.</td>
+                <td>2018-19 Q2(c)</td>
+            </tr>
+             <tr>
+                <td>Change of Order</td>
+                <td>Change the order of the integration in: $\int_{0}^{a}\int_{y}^{a}\frac{x~dx~dy}{(x^{2}+y^{2})}$ and hence evaluate.</td>
+                <td>2019-20 Q6(a)</td>
+            </tr>
+             <tr>
+                <td>Change of Order</td>
+                <td>Change the order of integration in: $\int_{0}^{2}\int_{\sqrt{4-x^{2}}}^{4-x}f(x,y)dy~dx$.</td>
+                <td>2022-23 Q5(a)</td>
+            </tr>
+             <tr>
+                <td>Change of Order</td>
+                <td>Change order of integration and hence evaluate: $\int_{0}^{a}\int_{\sqrt{ax}}^{a}\frac{y^{2}}{\sqrt{y^{4}-a^{2}x^{2}}}dx~dy$.</td>
+                <td>2022-23 SCOP Q2(b)</td>
+            </tr>
+            <tr>
+                <td>Change of Order</td>
+                <td>Evaluate $\int_{0}^{2}\int_{1}^{e^{x}}dxdy$ by changing the order of integration.</td>
+                <td>2023-24 Q5(a)</td>
+            </tr>
+             <tr>
+                <td>Short Answer</td>
+                <td>Evaluate $\int_{0}^{1}\int_{0}^{x^{2}}e^{y/x}dydx$ (or variations like $\int_0^x$ or $y/x^2$).</td>
+                <td>2018-19 Q1(e)</td>
+            </tr>
+            <tr>
+                <td>Short Answer</td>
+                <td>Evaluate $\int_{0}^{1}\int_{0}^{x}e^{y/x}dx~dy$.</td>
+                <td>2022-23 Q1(e)<br>2022-23 SCOP Q1(f)</td>
+            </tr>
+             <tr>
+                <td>Short Answer</td>
+                <td>Evaluate $\int_{0}^{a}\int_{0}^{a}xy~dy~dx$.</td>
+                <td>2023-24 Q1(e)</td>
+            </tr>
+            <tr>
+                <td>Polar Coords</td>
+                <td>Change into polar coordinates and evaluate $\int_{0}^{a}\int_{0}^{\sqrt{a^{2}-x^{2}}}e^{-(x^{2}+y^{2})}dy~dx$.</td>
+                <td>2018-19 Q5(b)</td>
+            </tr>
+             <tr>
+                <td>Polar Coords</td>
+                <td>Evaluate: $\int_{0}^{\infty}\int_{0}^{\infty}e^{-(x^{2}+y^{2})}dx~dy$ by changing polar co-ordinates. Hence, show that $\int_{0}^{\infty}e^{-x^{2}}dx=\frac{\sqrt{\pi}}{2}$.</td>
+                <td>2022-23 SCOP Q5(b)</td>
+            </tr>
+             <tr>
+                <td>Triple Integral</td>
+                <td>Evaluate $\iiint_{R}(x-2y+z)dx~dy~dz$ where $R:0\le x\le1,0\le y\le x^{2},0\le z\le x+y$.</td>
+                <td>2022-23 Q5(c)</td>
+            </tr>
+            <tr>
+                <td>Triple Integral</td>
+                <td>Evaluate $\iiint_{R}(x+y+z)dx~dy~dz$ where $R:0\le x\le1,0\le y\le2\text{ and }2\le z\le3$.</td>
+                <td>2019-20 Q6(c)</td>
+            </tr>
+            <tr>
+                <td>Triple Integral</td>
+                <td>Evaluate $\iiint e^{x+y+z}dx~dy~dz$ (Limits unclear in source).</td>
+                <td>2023-24 Q5(b)</td>
+            </tr>
+            <tr>
+                <td>Volume/Mass</td>
+                <td>Find the volume of the cylindrical column standing on the area common to the parabolas $y^{2}=x, x^{2}=y$ and cut off the surface $z=12+y-x^{2}$.</td>
+                <td>2018-19 Q5(c)</td>
+            </tr>
+            <tr>
+                <td>Volume/Mass</td>
+                <td>Find the mass of an octant of the ellipsoid: $\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{z^{2}}{c^{2}}=1$ the density at any point being $\rho=kxyz$.</td>
+                <td>2022-23 Q2(c)</td>
+            </tr>
+            <tr>
+                <td>Volume/Mass</td>
+                <td>Calculate the volume of the solid bounded by the surface $x=0, y=0, x+y+z=1$ and $z=0$.</td>
+                <td>2022-23 SCOP Q5(c)</td>
+            </tr>
+        </table>
+
+        <h3>Topic: Beta & Gamma Functions</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td>Show that $\Gamma(\frac{1}{2})=\sqrt{\pi}.$</td>
+                <td>2018-19 Q1(f)<br>2022-23 SCOP Q5(a)(i)</td>
+            </tr>
+             <tr>
+                <td>Proof</td>
+                <td>Show that $\Gamma(n)\Gamma(1-n)=\frac{\pi}{\sin n\pi}(0<n<1).$</td>
+                <td>2018-19 Q5(a)</td>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td>Prove that: $B(l,m)=\frac{\Gamma(l)\Gamma(m)}{\Gamma(l+m)}$ (or similar notation).</td>
+                <td>2019-20 Q2(c)<br>2022-23 Q5(b)</td>
+            </tr>
+             <tr>
+                <td>Proof</td>
+                <td>Prove that: $B(m+1,n)=\frac{m}{m+n}B(m,n)$.</td>
+                <td>2022-23 SCOP Q1(e)</td>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td>Prove that: $\frac{B(m,n+1)}{n}=\frac{B(m+1,n)}{m}=\frac{B(m,n)}{m+n}$.</td>
+                <td>2019-20 Q6(b)</td>
+            </tr>
+             <tr>
+                <td>Proof</td>
+                <td>Prove that $\Gamma(n)\Gamma(n+\frac{1}{2})2^{2n-1}=\sqrt{\pi}\Gamma(2n)$ where n is positive.</td>
+                <td>2023-24 Q5(c)</td>
+            </tr>
+            <tr>
+                <td>Evaluation</td>
+                <td>Find the value of $\Gamma(-\frac{1}{2})$ or $\Gamma(-\frac{3}{2})$.</td>
+                <td>2019-20 Q1(h)<br>2022-23 Q1(f)</td>
+            </tr>
+             <tr>
+                <td>Evaluation</td>
+                <td>Evaluate $\int_{0}^{\infty}\sqrt{x}e^{-x}dx$.</td>
+                <td>2023-24 Q1(f)</td>
+            </tr>
+            <tr>
+                <td>Identity</td>
+                <td>Show $\int_{0}^{1}(\log\frac{1}{y})^{n-1}dy=\Gamma(n)$.</td>
+                <td>2022-23 SCOP Q5(a)(ii)</td>
+            </tr>
+        </table>
+
+        <!-- MODULE IV -->
+        <h2>Module IV: Vector Calculus</h2>
+
+        <h3>Topic: Gradient, Divergence, Curl</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Directional Derivative</td>
+                <td>Find the directional derivative of $\phi=5x^{2}y-5y^{2}z+\frac{5}{2}z^{2}x$ at the point P(1,1,1) in the direction of the line $\frac{x-1}{2}=\frac{y-3}{-2}=\frac{z}{1}$.</td>
+                <td>2018-19 Q6(a)</td>
+            </tr>
+             <tr>
+                <td>Directional Derivative</td>
+                <td>Find the directional derivative of the function $f=x^{2}-y^{2}+2z^{2}$ at the point $P(1,2,3)$ in the direction of the line PQ where Q(5,0,4).</td>
+                <td>2019-20 Q5(a)<br>2022-23 SCOP Q6(a)</td>
+            </tr>
+             <tr>
+                <td>Directional Derivative</td>
+                <td>Find the directional derivative of $\phi(x,y,z)=x^{2}yz+4xz^{2}$ at (1,2,1) in the direction of $2\hat{i}-\hat{j}-2\hat{k}$.</td>
+                <td>2023-24 Q6(a)</td>
+            </tr>
+            <tr>
+                <td>Irrotational/Solenoidal</td>
+                <td>Determine a and b such that the vector field $\vec{A}=(2xy+3yz)\hat{i}+(x^{2}+axz-4z^{2})\hat{j}-(3xy+byz)\hat{k}$ is irrotational.</td>
+                <td>2018-19 Q1(h)<br>2022-23 Q6(c)</td>
+            </tr>
+            <tr>
+                <td>Irrotational/Solenoidal</td>
+                <td>Prove that: $\vec{F}=(y^{2}-z^{2}+3yz-2x)\hat{i}+(3xz+2xy)\hat{j}+(3xy-2xz+2z)\hat{k}$ is both solenoidal and irrotational.</td>
+                <td>2019-20 Q5(b)</td>
+            </tr>
+             <tr>
+                <td>Irrotational/Solenoidal</td>
+                <td>A fluid motion is given: $\vec{v}=(y+z)\hat{i}+(z+x)\hat{j}+(x+y)\hat{k}$. Show that the motion is irrotational and hence find the velocity potential.</td>
+                <td>2022-23 SCOP Q6(b)</td>
+            </tr>
+            <tr>
+                <td>Basics</td>
+                <td>Find the unit normal to the surface $xy^{3}z^{2}=4$ at point (-1,-1,2).</td>
+                <td>2018-19 Q1(g)</td>
+            </tr>
+            <tr>
+                <td>Basics</td>
+                <td>Find the normal vector to the surface $z=2xy$ at $(2,1,4)$.</td>
+                <td>2023-24 Q1(g)</td>
+            </tr>
+             <tr>
+                <td>Basics</td>
+                <td>Find a unit normal vector to the surface $x^{2}+3y^{2}+2z^{2}=6$ at point (2,0,1).</td>
+                <td>2022-23 SCOP Q1(g)</td>
+            </tr>
+            <tr>
+                <td>Basics</td>
+                <td>If $\vec{r}=x\hat{i}+y\hat{j}+z\hat{k}$ then find $\vec{\nabla}\cdot\vec{r}$.</td>
+                <td>2022-23 Q1(g)</td>
+            </tr>
+             <tr>
+                <td>Basics</td>
+                <td>If $f=2x^{2}-3y^{2}+4z^{2}$, find the value of curl (grad f).</td>
+                <td>2022-23 SCOP Q1(h)</td>
+            </tr>
+             <tr>
+                <td>Basics</td>
+                <td>Find grad $\phi$ when $\phi=3x^{2}y-y^{3}z^{2}$ at the point (1,-2,-1).</td>
+                <td>2019-20 Q1(e)</td>
+            </tr>
+        </table>
+
+        <h3>Topic: Integral Theorems (Green, Stoke, Gauss)</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Question</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td>Green's Theorem</td>
+                <td>Using Green's theorem evaluate $\int_{c}(x^{2}ydx+x^{2}dy)$ where c is the boundary described counter clockwise of the triangle with vertices (0,0), (1,0), (1,1).</td>
+                <td>2018-19 Q6(c)<br>2023-24 Q6(c)</td>
+            </tr>
+            <tr>
+                <td>Green's Theorem</td>
+                <td>Use Green's theorem, to evaluate: $\int_{C}(x^{2}+xy)dx+(x^{2}+y^{2})dy$ where C is the square formed by the lines $y=\pm1, x=\pm1$.</td>
+                <td>2022-23 Q6(a)</td>
+            </tr>
+             <tr>
+                <td>Stoke's Theorem</td>
+                <td>Evaluate $\oint_{C}\vec{F}\cdot d\vec{r}$ by Stoke's theorem where $\vec{F}=y^{2}i+x^{2}j-(x+z)k$ and C is the boundary of the triangle with vertices at (0,0,0), (1,0,0) and (1,1,0).</td>
+                <td>2019-20 Q2(d)<br>2022-23 SCOP Q2(a)</td>
+            </tr>
+             <tr>
+                <td>Stoke's Theorem</td>
+                <td>Verify Stoke's theorem for the function $\vec{F}=x^{2}\hat{i}-xy\hat{j}$ integrated round the square in the plane z=0 and bounded by the lines x=0, y=0, x=a, y=a.</td>
+                <td>2023-24 Q2(d)</td>
+            </tr>
+            <tr>
+                <td>Gauss Divergence</td>
+                <td>Show that $\iint_{S}\vec{F}\cdot\hat{n}ds=\frac{3}{2}$ where $\vec{F}=4xzi-y^{2}\hat{j}+yz\hat{k}$ and S is the surface of the cube bounded by the planes x=0, x=1, y=0, y=1, z=0, z=1.</td>
+                <td>2018-19 Q2(d)</td>
+            </tr>
+             <tr>
+                <td>Gauss Divergence</td>
+                <td>If $\vec{F}=4xi-y^{2}j+yzk,$ then evaluate: $\iint_{S}\vec{F}\cdot\hat{n}ds$ by using Gauss-divergence theorem. Where S is surface taken over the cube bounded by planes x=0, x=1, y=0, y=1, z=0, z=1.</td>
+                <td>2019-20 Q5(c)</td>
+            </tr>
+            <tr>
+                <td>Gauss Divergence</td>
+                <td>Verify the Gauss divergence theorem for: $\vec{F}=(x^{2}-yz)\hat{i}+(y^{2}-zx)\hat{j}+(z^{2}-xy)\hat{k}$ taken over the rectangular parallelopiped $0\le x\le a, 0\le y\le b, 0\le z\le c$.</td>
+                <td>2022-23 Q2(d)</td>
+            </tr>
+            <tr>
+                <td>Gauss Divergence</td>
+                <td>Use divergence theorem to show that: $\iint_{S}\nabla(x^{2}+y^{2}+z^{2})\cdot d\vec{s}=6V$.</td>
+                <td>2022-23 SCOP Q6(c)</td>
+            </tr>
+             <tr>
+                <td>Line Integral</td>
+                <td>If $\vec{A}=(3x^{2}+6y)\hat{i}-14yz\hat{j}+20xz^{2}\hat{k}$ evaluate the line integral $\oint\vec{A}\cdot d\vec{r}$ from (0,0,0) to (1,1,1) along the curve c: $x=t, y=t^{2}, z=t^{3}$.</td>
+                <td>2023-24 Q6(b)</td>
+            </tr>
+            <tr>
+                <td>Line Integral</td>
+                <td>If $\vec{A}=(x-y)\hat{i}+(x+y)\hat{j}$, evaluate: $\oint_{C}\vec{A}\cdot d\vec{r}$ around the curve C consisting of $y=x^{2}$ and $y^{2}=x$.</td>
+                <td>2022-23 Q6(b)</td>
+            </tr>
+             <tr>
+                <td>Definition</td>
+                <td>What is surface integral of a vector function f over the surface S.</td>
+                <td>2023-24 Q1(h)</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- PAGE 4: QUESTION PAPERS -->
+    <div id="papers" class="page-section">
+        <button class="print-btn" onclick="printSection('papers')">🖨️ Print List</button>
+        <h1>Original Question Papers (PDFs)</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Access the original scanned papers for verification. Ensure 'assets' folder is present.</p>
+
+        <div class="paper-grid">
+            <!-- Paper 1 -->
+            <div class="paper-card">
+                <span class="paper-icon">📄</span>
+                <div class="paper-title">2018-19 Paper</div>
+                <div class="btn-group">
+                    <a href="assets/2018-19.pdf" target="_blank" class="action-btn btn-view">👁️ View</a>
+                    <a href="assets/2018-19.pdf" download class="action-btn btn-download">⬇️ Download</a>
+                </div>
+            </div>
+
+            <!-- Paper 2 -->
+            <div class="paper-card">
+                <span class="paper-icon">📄</span>
+                <div class="paper-title">2019-20 Paper</div>
+                <div class="btn-group">
+                    <a href="assets/2019-20.pdf" target="_blank" class="action-btn btn-view">👁️ View</a>
+                    <a href="assets/2019-20.pdf" download class="action-btn btn-download">⬇️ Download</a>
+                </div>
+            </div>
+
+            <!-- Paper 3 -->
+            <div class="paper-card">
+                <span class="paper-icon">📄</span>
+                <div class="paper-title">2022-23 Paper</div>
+                <div class="btn-group">
+                    <a href="assets/2022-23.pdf" target="_blank" class="action-btn btn-view">👁️ View</a>
+                    <a href="assets/2022-23.pdf" download class="action-btn btn-download">⬇️ Download</a>
+                </div>
+            </div>
+
+            <!-- Paper 4 -->
+            <div class="paper-card">
+                <span class="paper-icon">📄</span>
+                <div class="paper-title">2022-23 (SCOP) Paper</div>
+                <div class="btn-group">
+                    <a href="assets/2022-23 (SCOP).pdf" target="_blank" class="action-btn btn-view">👁️ View</a>
+                    <a href="assets/2022-23 (SCOP).pdf" download class="action-btn btn-download">⬇️ Download</a>
+                </div>
+            </div>
+
+            <!-- Paper 5 -->
+            <div class="paper-card">
+                <span class="paper-icon">📄</span>
+                <div class="paper-title">2023-24 Paper</div>
+                <div class="btn-group">
+                    <a href="assets/2023-24.pdf" target="_blank" class="action-btn btn-view">👁️ View</a>
+                    <a href="assets/2023-24.pdf" download class="action-btn btn-download">⬇️ Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: SYLLABUS -->
+    <div id="syllabus" class="page-section">
+        <button class="print-btn" onclick="printSection('syllabus')">🖨️ Print Syllabus</button>
+        <h1>Course Syllabus: Matrices & Calculus</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Course Contents, Topics, Hours, and Credits Breakdown</p>
+
+        <table class="syllabus-table">
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Course Topics</th>
+                    <th>Total Hours</th>
+                    <th>Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Row 1: Module I -->
+                <tr>
+                    <td class="center-text"><strong>I</strong></td>
+                    <td>
+                        <strong>Matrices</strong><br>
+                        Types of Matrices, Elementary row and column transformation, Rank of matrix, Linear dependence, Consistency of linear system of equations and their solution, Characteristic equation, Caley-Hamilton theorem, Eigen values and eigen vectors, Application of matrices to engineering problems.
+                    </td>
+                    <td class="center-text" rowspan="2">30</td>
+                    <td class="center-text" rowspan="2">1</td>
+                </tr>
+                <!-- Row 2: Module II -->
+                <tr>
+                    <td class="center-text"><strong>II</strong></td>
+                    <td>
+                        <strong>Differential Calculus</strong><br>
+                        Leibnitz theorem, Partial differentiation, Euler's theorem, Expansion of function of several variables, Jacobian, Extrema of functions of several variables, Lagranges method of multipliers (Simple applications).
+                    </td>
+                </tr>
+                <!-- Row 3: Module III -->
+                <tr>
+                    <td class="center-text"><strong>III</strong></td>
+                    <td>
+                        <strong>Multiple Integrals</strong><br>
+                        Double and triple integrals, Change of order, Change of variables, Beta and Gamma functions, Applications to area and volume, Dirichlet integral and applications.
+                    </td>
+                    <td class="center-text" rowspan="2">30</td>
+                    <td class="center-text" rowspan="2">1</td>
+                </tr>
+                <!-- Row 4: Module IV -->
+                <tr>
+                    <td class="center-text"><strong>IV</strong></td>
+                    <td>
+                        <strong>Vector Calculus</strong><br>
+                        Point function, Gradient, Divergence and Curl of a vector and their physical interpretations, Line, Surface and Volume integrals, Green's, Stoke's and Gauss divergence theorems (without proof) and applications.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGE 6: NOTES -->
+    <div id="notes" class="page-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h1 style="margin: 0;">Lecture Notes</h1>
+            <a href="assets/notes.pdf" download class="download-notes-btn">⬇️ Download PDF</a>
+        </div>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Complete course notes. Scroll to read.</p>
+        
+        <div class="pdf-wrapper">
+            <iframe class="pdf-frame" src="assets/notes.pdf" type="application/pdf">
+                <p>Your browser does not support PDFs. <a href="assets/notes.pdf">Download the PDF</a> to view it.</p>
+            </iframe>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function switchTab(tabId) {
+        // Hide all sections
+        document.querySelectorAll('.page-section').forEach(el => {
+            el.classList.remove('active');
+            el.classList.remove('printing');
+        });
+        
+        // Deactivate all buttons
+        document.querySelectorAll('.nav-btn').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Show selected section
+        document.getElementById(tabId).classList.add('active');
+        
+        // Activate button (rough match)
+        event.target.classList.add('active');
+    }
+
+    function printSection(sectionId) {
+        // Add printing class to specific section to override CSS hiding
+        document.querySelectorAll('.page-section').forEach(el => {
+            el.classList.remove('printing');
+        });
+        document.getElementById(sectionId).classList.add('printing');
+        window.print();
+    }
+</script>
+
+</body>
+</html>
